@@ -1,0 +1,7 @@
+GET http://10.140.202.115/Citrix/Monitor/OData/v3/Data/
+Content-Type: application/xml
+
+{
+    "username":"david",
+    "password":"@xi@ns2020"
+}

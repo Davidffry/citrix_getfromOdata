@@ -275,6 +275,8 @@ Function Resolve-CrossReferences
                 }
                 else
                 {
+                Write-Verbose $properties
+                Write-Verbose $params
                     $params.uri = ( "{0}://{1}/Citrix/Monitor/OData/v{2}/Data/{3}s" -f $protocol , $ddc , $version , $id ) ## + (Get-DateRanges -query $id -from $from -to $to -selective -oDataVersion $oDataVersion)
                 }
 
