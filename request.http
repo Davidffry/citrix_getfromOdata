@@ -1,7 +1,9 @@
-GET http://10.140.202.115/Citrix/Monitor/OData/v3/Data/
-Content-Type: application/xml
+# GET http://10.140.202.115/Citrix/Monitor/OData/v3/Data/
+# Content-Type: application/xml
 
-{
-    "username":"david",
-    "password":"@xi@ns2020"
-}
+# {
+#     "username":"david",
+#     "password":"@xi@ns2020"
+# }
+
+curl http://10.140.202.115/Citrix/Monitor/OData/v3/Data/Sessions -v --ntlm -u "david@xen:@xi@ns2020"

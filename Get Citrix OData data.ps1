@@ -136,10 +136,12 @@ Function Invoke-ODataTransform
 
     Process
     {
-        if( $records -is [array] )
+        if( $records -is [array] -or $oDataVersion -eq 3 )
         {
             if( ! $propertyNames )
             {
+                $records.content.properties
+                
                 $properties = ($records | Select -First 1).content.properties
                 if( $properties )
                 {
@@ -501,6 +503,8 @@ if( $PsCmdlet.ParameterSetName -eq 'cloud' )
         }
         else
         {
+            $da = Invoke-RestMethod @params 
+            $da.content.properties
             @( Invoke-RestMethod @params ) | Invoke-ODataTransform
         }
         $fatalException = $null
@@ -525,6 +529,7 @@ if( $services )
 {
     if( $services.PSObject.Properties[ 'service' ] )
     {
+           $services.service.workspace.collection
         $services.service.workspace.collection | Select-Object -Property 'title' | Sort-Object -Property 'title'
     }
     else
@@ -534,8 +539,10 @@ if( $services )
 }
 elseif( $data -and $data.Count )
 {
+    $data
     if( $PSBoundParameters[ 'join' ] )
     {
+
         [hashtable]$tables = @{}
 
         ## now figure out what other tables we need in order to satisfy these ids (not interested in id on it's own)
